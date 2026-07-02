@@ -13,5 +13,5 @@
 | 5 | 人体成分通信接口电路板（抄板） | [GK_C123](https://github.com/darwinstudio/GK_C123) | — |
 | 6 | 全自动微量分析仪/圆盘粪便分析仪/轨道式白带分析仪通用主控板 | [GK_C113](https://github.com/darwinstudio/GK_C113) | — |
 | 7 | 体检一体机身高体重电路板固件 | — | [BodySense_Node](https://github.com/darwinstudio/BodySense_Node) |
-| 8 | 公共小板 | 槽型限位固定 [GK_C101](https://github.com/darwinstudio/GK_C101)<br>漫反射传感器固定 [GK_C102](https://github.com/darwinstudio/GK_C102) | — |
+| 8 | 轨道式检测仪器公共小板 | 槽型限位固定 [GK_C101](https://github.com/darwinstudio/GK_C101)<br>漫反射传感器固定 [GK_C102](https://github.com/darwinstudio/GK_C102)<br>采样针臂转接板 [GK_C106](https://github.com/darwinstudio/GK_C106) | — |
 
