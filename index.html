@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Route</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1016;
+      --surface: #111920;
+      --surface-raised: #151e28;
+      --border: #1c2a36;
+      --border-accent: #1a3040;
+      --text: #dce4ec;
+      --text-sec: #7f919f;
+      --text-dim: #4a5a68;
+      --cyan: #00d4c8;
+      --cyan-bg: rgba(0, 212, 200, 0.07);
+      --cyan-glow: rgba(0, 212, 200, 0.14);
+      --amber: #e8a84c;
+      --amber-bg: rgba(232, 168, 76, 0.07);
+      --amber-glow: rgba(232, 168, 76, 0.14);
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Subtle grid background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* ══════════════════════════════
+       Header
+    ══════════════════════════════ */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: 0.2em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    header h1 .slash {
+      color: var(--cyan);
+    }
+
+    header .sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Status badge ── */
+    .status-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.3rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+    }
+
+    .status-bar .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .status-bar span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-sec);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--cyan-glow); }
+      50% { opacity: 0.5; box-shadow: 0 0 0 6px transparent; }
+    }
+
+    /* ══════════════════════════════
+       Card Grid
+    ══════════════════════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Index badge */
+    .card::before {
+      content: attr(data-idx);
+      position: absolute;
+      top: 0.85rem;
+      right: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1rem 0.45rem;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .card-head {
+      padding: 0.9rem 1.15rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-right: 3rem;
+    }
+
+    .card-head h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .card-body {
+      padding: 0.35rem 0;
+    }
+
+    /* ── Repo Row ── */
+    .repo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 1.15rem;
+      transition: background 0.2s;
+    }
+
+    .repo:hover {
+      background: var(--surface-raised);
+    }
+
+    .repo + .repo {
+      border-top: 1px solid rgba(28, 42, 54, 0.5);
+    }
+
+    .repo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .repo-dot.hw {
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan-glow);
+    }
+
+    .repo-dot.fw {
+      background: var(--amber);
+      box-shadow: 0 0 6px var(--amber-glow);
+    }
+
+    .repo-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 68px;
+    }
+
+    .repo-label.hw { color: var(--cyan); }
+    .repo-label.fw { color: var(--amber); }
+
+    .repo-name {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .repo-name a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .repo-name a:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .repo-name .na {
+      color: var(--text-dim);
+      font-style: normal;
+      font-size: 0.82rem;
+    }
+
+    /* ── External link icon ── */
+    .ext {
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .repo:hover .ext {
+      opacity: 0.5;
+    }
+
+    .ext svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--text-sec);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ══════════════════════════════
+       Legend
+    ══════════════════════════════ */
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-sec);
+    }
+
+    .legend-item .ldot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+
+    .legend-item .ldot.hw { background: var(--cyan); }
+    .legend-item .ldot.fw { background: var(--amber); }
+
+    /* ══════════════════════════════
+       Footer
+    ══════════════════════════════ */
+    footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--text-sec);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    /* ══════════════════════════════
+       Responsive
+    ══════════════════════════════ */
+    @media (max-width: 680px) {
+      .page { padding: 2rem 1rem 3rem; }
+      header h1 { font-size: 1.35rem; letter-spacing: 0.12em; }
+      .grid { grid-template-columns: 1fr; }
+      .repo-label { min-width: 56px; font-size: 0.68rem; }
+    }
+
+    /* ── Entrance animation ── */
+    .card {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.45s ease forwards;
+    }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.2s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.3s; }
+    .card:nth-child(7) { animation-delay: 0.35s; }
+    .card:nth-child(8) { animation-delay: 0.4s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ── Header ── -->
+    <header>
+      <h1>PROJECT<span class="slash">/</span>ROUTE</h1>
+      <p class="sub">项目路由表 &mdash; 电路设计 &amp; 固件仓库索引</p>
+      <div class="status-bar">
+        <span class="dot"></span>
+        <span>8 projects indexed</span>
+      </div>
+    </header>
+
+    <!-- ── Card Grid ── -->
+    <div class="grid">
+
+      <!-- 01 -->
+      <div class="card" data-idx="01">
+        <div class="card-head"><h2>骨密度电源控制拓展版</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C132" target="_blank" rel="noopener">GK_C132</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">程序</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/BMD_PowerRelay" target="_blank" rel="noopener">BMD_PowerRelay</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="card" data-idx="02">
+        <div class="card-head"><h2>母乳和移送样模块二合一通用控制板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C122" target="_blank" rel="noopener">GK_C122</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">移送样</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/TransferSampleModule" target="_blank" rel="noopener">TransferSampleModule</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">母乳</span>
+            <span class="repo-name"><span class="na">&mdash;</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="card" data-idx="03">
+        <div class="card-head"><h2>人体成分转盘驱动板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C129" target="_blank" rel="noopener">GK_C129</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Boot</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/HumanDisk_Boot" target="_blank" rel="noopener">HumanDisk_Boot</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">App</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/HumanDisk" target="_blank" rel="noopener">HumanDisk</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="card" data-idx="04">
+        <div class="card-head"><h2>四诊仪LED驱动电路板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">主控板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C130" target="_blank" rel="noopener">GK_C130</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">灯板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C131" target="_blank" rel="noopener">GK_C131</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Boot</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/LEDDriver_FourDiagnostic_Boot" target="_blank" rel="noopener">LEDDriver_FourDiagnostic_Boot</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">App</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/LEDDriver_FourDiagnostic" target="_blank" rel="noopener">LEDDriver_FourDiagnostic</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="card" data-idx="05">
+        <div class="card-head"><h2>人体成分通信接口电路板（抄板）</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C123" target="_blank" rel="noopener">GK_C123</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">程序</span>
+            <span class="repo-name"><span class="na">&mdash;</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="card" data-idx="06">
+        <div class="card-head"><h2>全自动微量分析仪 / 圆盘粪便分析仪 / 轨道式白带分析仪 通用主控板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C113" target="_blank" rel="noopener">GK_C113</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">程序</span>
+            <span class="repo-name"><span class="na">&mdash;</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="card" data-idx="07">
+        <div class="card-head"><h2>体检一体机身高体重电路板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><span class="na">&mdash;</span></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">程序</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/BodySense_Node" target="_blank" rel="noopener">BodySense_Node</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="card" data-idx="08">
+        <div class="card-head"><h2>轨道式检测仪器公共小板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">限位</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C101" target="_blank" rel="noopener">GK_C101</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">传感器</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C102" target="_blank" rel="noopener">GK_C102</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">转接板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C106" target="_blank" rel="noopener">GK_C106</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">程序</span>
+            <span class="repo-name"><span class="na">&mdash;</span></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Legend ── -->
+    <div class="legend">
+      <div class="legend-item">
+        <span class="ldot hw"></span>
+        <span>电路 / 硬件</span>
+      </div>
+      <div class="legend-item">
+        <span class="ldot fw"></span>
+        <span>程序 / 固件</span>
+      </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <a href="https://github.com/darwinstudio" target="_blank" rel="noopener">github.com/darwinstudio</a>
+    </footer>
+
+  </div>
+</body>
+</html>
