@@ -18,7 +18,8 @@
 | | 仓库 |
 |:---|:---|
 | 电路 | [GK_C122](https://github.com/darwinstudio/GK_C122) |
-| 程序（移送样） | [TransferSampleModule](https://github.com/darwinstudio/TransferSampleModule) |
+| 程序（移送样 App） | [TransferSampleModule](https://github.com/darwinstudio/TransferSampleModule) |
+| 程序（移送样 Boot） | [TransferSampleModule_Boot](https://github.com/darwinstudio/TransferSampleModule_Boot) |
 | 程序（母乳） | — |
 
 ---
