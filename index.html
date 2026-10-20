@@ -342,15 +342,7 @@
       transform: translateY(10px);
       animation: fadeUp 0.4s ease forwards;
     }
-    .card:nth-child(1) { animation-delay: 0.04s; }
-    .card:nth-child(2) { animation-delay: 0.08s; }
-    .card:nth-child(3) { animation-delay: 0.12s; }
-    .card:nth-child(4) { animation-delay: 0.16s; }
-    .card:nth-child(5) { animation-delay: 0.2s; }
-    .card:nth-child(6) { animation-delay: 0.24s; }
-    .card:nth-child(7) { animation-delay: 0.28s; }
-    .card:nth-child(8) { animation-delay: 0.32s; }
-    .card:nth-child(9) { animation-delay: 0.36s; }
+    /* 卡片入场延迟由生成脚本写成行内 style，卡片数量变化无需改这里 */
 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
@@ -365,14 +357,16 @@
       <p class="sub">项目路由表 &mdash; 电路设计 &amp; 固件仓库索引</p>
       <div class="status-bar">
         <span class="dot"></span>
-        <span>9 projects indexed</span>
+        <span><!-- stat:begin -->11 projects indexed<!-- stat:end --></span>
       </div>
     </header>
 
     <div class="grid">
 
-      <div class="card" data-idx="01">
-        <div class="card-head"><h2>骨密度电源控制拓展版</h2></div>
+      <!-- routes:begin 生成区 — 由 scripts/build_route.py 从 routes.json 生成，请勿手改 -->
+
+      <div class="card" data-idx="01" style="animation-delay:0.04s">
+        <div class="card-head"><h2>骨密度电源控制拓展板</h2></div>
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot hw"></span>
@@ -382,38 +376,14 @@
           </div>
           <div class="repo">
             <span class="repo-dot fw"></span>
-            <span class="repo-label fw">程序</span>
+            <span class="repo-label fw">App</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/BMD_PowerRelay" target="_blank" rel="noopener">BMD_PowerRelay</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
         </div>
       </div>
 
-      <div class="card" data-idx="02">
-        <div class="card-head"><h2>母乳和移送样模块二合一通用控制板</h2></div>
-        <div class="card-body">
-          <div class="repo">
-            <span class="repo-dot hw"></span>
-            <span class="repo-label hw">电路</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C122" target="_blank" rel="noopener">GK_C122</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-          <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">移送样 App</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/TransferSampleModule" target="_blank" rel="noopener">TransferSampleModule</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-          <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">移送样 Boot</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/TransferSampleModule_Boot" target="_blank" rel="noopener">TransferSampleModule_Boot</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-idx="03">
+      <div class="card" data-idx="02" style="animation-delay:0.08s">
         <div class="card-head"><h2>人体成分转盘驱动板</h2></div>
         <div class="card-body">
           <div class="repo">
@@ -437,8 +407,8 @@
         </div>
       </div>
 
-      <div class="card" data-idx="04">
-        <div class="card-head"><h2>四诊仪LED驱动电路板</h2></div>
+      <div class="card" data-idx="03" style="animation-delay:0.12s">
+        <div class="card-head"><h2>四诊仪LED电路板</h2></div>
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot hw"></span>
@@ -448,7 +418,7 @@
           </div>
           <div class="repo">
             <span class="repo-dot hw"></span>
-            <span class="repo-label hw">灯板</span>
+            <span class="repo-label hw">圆环灯板</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C131" target="_blank" rel="noopener">GK_C131</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
@@ -467,8 +437,8 @@
         </div>
       </div>
 
-      <div class="card" data-idx="05">
-        <div class="card-head"><h2>人体成分通信接口电路板（抄板）</h2></div>
+      <div class="card" data-idx="04" style="animation-delay:0.16s">
+        <div class="card-head"><h2>人体成分通信转接电路板</h2></div>
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot hw"></span>
@@ -479,31 +449,7 @@
         </div>
       </div>
 
-      <div class="card" data-idx="06">
-        <div class="card-head"><h2>全自动微量分析仪 / 圆盘粪便分析仪 / 轨道式白带分析仪 通用主控板</h2></div>
-        <div class="card-body">
-          <div class="repo">
-            <span class="repo-dot hw"></span>
-            <span class="repo-label hw">电路</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C113" target="_blank" rel="noopener">GK_C113</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-          <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">程序</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/TrackAnalyzerController" target="_blank" rel="noopener">TrackAnalyzerController</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-          <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">程序</span>
-            <span class="repo-name"><a href="https://github.com/darwinstudio/TrackAnalyzerControllerBoot" target="_blank" rel="noopener">TrackAnalyzerControllerBoot</a></span>
-            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-idx="07">
+      <div class="card" data-idx="05" style="animation-delay:0.20s">
         <div class="card-head"><h2>体检一体机身高体重电路板</h2></div>
         <div class="card-body">
           <div class="repo">
@@ -515,32 +461,152 @@
         </div>
       </div>
 
-      <div class="card" data-idx="08">
+      <div class="card" data-idx="06" style="animation-delay:0.24s">
+        <div class="card-head"><h2>移送样模块控制板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C122" target="_blank" rel="noopener">GK_C122</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Boot</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/TransferSampleModule_Boot" target="_blank" rel="noopener">TransferSampleModule_Boot</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">App</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/TransferSampleModule" target="_blank" rel="noopener">TransferSampleModule</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-idx="07" style="animation-delay:0.28s">
+        <div class="card-head"><h2>白带分析仪主控板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">电路</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C113" target="_blank" rel="noopener">GK_C113</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Boot</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/TrackAnalyzerControllerBoot" target="_blank" rel="noopener">TrackAnalyzerControllerBoot</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">App</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/TrackAnalyzerController" target="_blank" rel="noopener">TrackAnalyzerController</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-idx="08" style="animation-delay:0.32s">
         <div class="card-head"><h2>轨道式检测仪器公共小板</h2></div>
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot hw"></span>
-            <span class="repo-label hw">槽型限位固定</span>
+            <span class="repo-label hw">槽型限位</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C101" target="_blank" rel="noopener">GK_C101</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
           <div class="repo">
             <span class="repo-dot hw"></span>
-            <span class="repo-label hw">漫反射传感器固定</span>
+            <span class="repo-label hw">漫反射传感器</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C102" target="_blank" rel="noopener">GK_C102</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
           <div class="repo">
             <span class="repo-dot hw"></span>
-            <span class="repo-label hw">采样针臂转接板</span>
+            <span class="repo-label hw">采样臂转接板</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C106" target="_blank" rel="noopener">GK_C106</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
         </div>
       </div>
 
-      <div class="card" data-idx="09">
-        <div class="card-head"><h2>复用模块</h2></div>
+      <div class="card" data-idx="09" style="animation-delay:0.36s">
+        <div class="card-head"><h2>微量同杯检测电路板</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">信号板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C127" target="_blank" rel="noopener">GK_C127</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">传感器板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C128" target="_blank" rel="noopener">GK_C128</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-idx="10" style="animation-delay:0.40s">
+        <div class="card-head"><h2>电子脊柱测量仪</h2></div>
+        <div class="card-body">
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">按键板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C116" target="_blank" rel="noopener">GK_C116</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">指示灯板</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C117" target="_blank" rel="noopener">GK_C117</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot hw"></span>
+            <span class="repo-label hw">USB无线模块</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/GK_C119" target="_blank" rel="noopener">GK_C119</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Boot</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerBoot" target="_blank" rel="noopener">SpineScannerBoot</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">App</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScanner" target="_blank" rel="noopener">SpineScanner</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">UI</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerUI" target="_blank" rel="noopener">SpineScannerUI</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Client</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerApp" target="_blank" rel="noopener">SpineScannerApp</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+          <div class="repo">
+            <span class="repo-dot fw"></span>
+            <span class="repo-label fw">Docs</span>
+            <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerDocs" target="_blank" rel="noopener">SpineScannerDocs</a></span>
+            <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-idx="11" style="animation-delay:0.44s">
+        <div class="card-head"><h2>程序复用模块</h2></div>
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot fw"></span>
@@ -574,6 +640,8 @@
           </div>
         </div>
       </div>
+
+      <!-- routes:end -->
 
     </div>
 

@@ -1,0 +1,229 @@
+{
+  "org": "darwinstudio",
+  "projects": [
+    {
+      "name": "骨密度电源控制拓展板",
+      "items": [
+        {
+          "kind": "hw",
+          "repo": "GK_C132"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "BMD_PowerRelay"
+        }
+      ]
+    },
+    {
+      "name": "人体成分转盘驱动板",
+      "items": [
+        {
+          "kind": "hw",
+          "repo": "GK_C129"
+        },
+        {
+          "kind": "fw",
+          "role": "Boot",
+          "repo": "HumanDisk_Boot"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "HumanDisk"
+        }
+      ]
+    },
+    {
+      "name": "四诊仪LED电路板",
+      "items": [
+        {
+          "kind": "hw",
+          "role": "主控板",
+          "repo": "GK_C130"
+        },
+        {
+          "kind": "hw",
+          "role": "圆环灯板",
+          "repo": "GK_C131"
+        },
+        {
+          "kind": "fw",
+          "role": "Boot",
+          "repo": "LEDDriver_FourDiagnostic_Boot"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "LEDDriver_FourDiagnostic"
+        }
+      ]
+    },
+    {
+      "name": "人体成分通信转接电路板",
+      "items": [
+        {
+          "kind": "hw",
+          "repo": "GK_C123"
+        }
+      ]
+    },
+    {
+      "name": "体检一体机身高体重电路板",
+      "items": [
+        {
+          "kind": "fw",
+          "repo": "BodySense_Node"
+        }
+      ]
+    },
+    {
+      "name": "移送样模块控制板",
+      "items": [
+        {
+          "kind": "hw",
+          "repo": "GK_C122"
+        },
+        {
+          "kind": "fw",
+          "role": "Boot",
+          "repo": "TransferSampleModule_Boot"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "TransferSampleModule"
+        }
+      ]
+    },
+    {
+      "name": "白带分析仪主控板",
+      "items": [
+        {
+          "kind": "hw",
+          "repo": "GK_C113"
+        },
+        {
+          "kind": "fw",
+          "role": "Boot",
+          "repo": "TrackAnalyzerControllerBoot"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "TrackAnalyzerController"
+        }
+      ]
+    },
+    {
+      "name": "轨道式检测仪器公共小板",
+      "items": [
+        {
+          "kind": "hw",
+          "role": "槽型限位",
+          "repo": "GK_C101"
+        },
+        {
+          "kind": "hw",
+          "role": "漫反射传感器",
+          "repo": "GK_C102"
+        },
+        {
+          "kind": "hw",
+          "role": "采样臂转接板",
+          "repo": "GK_C106"
+        }
+      ]
+    },
+    {
+      "name": "微量同杯检测电路板",
+      "items": [
+        {
+          "kind": "hw",
+          "role": "信号板",
+          "repo": "GK_C127"
+        },
+        {
+          "kind": "hw",
+          "role": "传感器板",
+          "repo": "GK_C128"
+        }
+      ]
+    },
+    {
+      "name": "电子脊柱测量仪",
+      "items": [
+        {
+          "kind": "hw",
+          "role": "按键板",
+          "repo": "GK_C116"
+        },
+        {
+          "kind": "hw",
+          "role": "指示灯板",
+          "repo": "GK_C117"
+        },
+        {
+          "kind": "hw",
+          "role": "USB无线模块",
+          "repo": "GK_C119"
+        },
+        {
+          "kind": "fw",
+          "role": "Boot",
+          "repo": "SpineScannerBoot"
+        },
+        {
+          "kind": "fw",
+          "role": "App",
+          "repo": "SpineScanner"
+        },
+        {
+          "kind": "fw",
+          "role": "UI",
+          "repo": "SpineScannerUI"
+        },
+        {
+          "kind": "fw",
+          "role": "Client",
+          "repo": "SpineScannerApp"
+        },
+        {
+          "kind": "fw",
+          "role": "Docs",
+          "repo": "SpineScannerDocs"
+        }
+      ]
+    },
+    {
+      "name": "程序复用模块",
+      "items": [
+        {
+          "kind": "fw",
+          "role": "步进电机控制",
+          "repo": "MultiStepMotor"
+        },
+        {
+          "kind": "fw",
+          "role": "LED控制",
+          "repo": "MultiLED"
+        },
+        {
+          "kind": "fw",
+          "role": "限位检测",
+          "repo": "MultiSlotLimit"
+        },
+        {
+          "kind": "fw",
+          "role": "串口通信",
+          "repo": "MultiUartStream"
+        },
+        {
+          "kind": "fw",
+          "role": "蜂鸣器控制",
+          "repo": "BuzzerPattern"
+        }
+      ]
+    }
+  ]
+}
