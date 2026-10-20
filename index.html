@@ -21,6 +21,12 @@
       --hw-bg: rgba(8, 145, 178, 0.07);
       --fw: #c2780a;
       --fw-bg: rgba(194, 120, 10, 0.07);
+      --ui: #7c5cd6;
+      --ui-bg: rgba(124, 92, 214, 0.08);
+      --client: #15803d;
+      --client-bg: rgba(21, 128, 61, 0.08);
+      --docs: #64707d;
+      --docs-bg: rgba(100, 112, 125, 0.09);
       --idx-bg: #eaf2f6;
       --idx-color: #0891b2;
     }
@@ -205,6 +211,9 @@
 
     .repo-dot.hw { background: var(--hw); }
     .repo-dot.fw { background: var(--fw); }
+    .repo-dot.ui { background: var(--ui); }
+    .repo-dot.client { background: var(--client); }
+    .repo-dot.docs { background: var(--docs); }
 
     .repo-label {
       font-family: 'JetBrains Mono', monospace;
@@ -224,6 +233,21 @@
     .repo-label.fw {
       color: var(--fw);
       background: var(--fw-bg);
+    }
+
+    .repo-label.ui {
+      color: var(--ui);
+      background: var(--ui-bg);
+    }
+
+    .repo-label.client {
+      color: var(--client);
+      background: var(--client-bg);
+    }
+
+    .repo-label.docs {
+      color: var(--docs);
+      background: var(--docs-bg);
     }
 
     .repo-name {
@@ -281,8 +305,10 @@
     ══════════════════════════════ */
     .legend {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
+      row-gap: 0.7rem;
       margin-top: 2.5rem;
       padding-top: 1.5rem;
       border-top: 2px solid var(--border);
@@ -304,6 +330,9 @@
 
     .legend-item .ldot.hw { background: var(--hw); }
     .legend-item .ldot.fw { background: var(--fw); }
+    .legend-item .ldot.ui { background: var(--ui); }
+    .legend-item .ldot.client { background: var(--client); }
+    .legend-item .ldot.docs { background: var(--docs); }
 
     /* ══════════════════════════════
        Footer
@@ -354,10 +383,10 @@
 
     <header>
       <h1>PROJECT<span class="slash">/</span>ROUTE</h1>
-      <p class="sub">项目路由表 &mdash; 电路设计 &amp; 固件仓库索引</p>
+      <p class="sub">项目路由表 &mdash; 电路、固件、UI、上位机与文档仓库索引</p>
       <div class="status-bar">
         <span class="dot"></span>
-        <span><!-- stat:begin -->11 projects indexed<!-- stat:end --></span>
+        <span><!-- stat:begin -->11 projects · 35 repos indexed<!-- stat:end --></span>
       </div>
     </header>
 
@@ -454,7 +483,7 @@
         <div class="card-body">
           <div class="repo">
             <span class="repo-dot fw"></span>
-            <span class="repo-label fw">程序</span>
+            <span class="repo-label fw">固件</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/BodySense_Node" target="_blank" rel="noopener">BodySense_Node</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
@@ -585,20 +614,20 @@
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
           <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">UI</span>
+            <span class="repo-dot ui"></span>
+            <span class="repo-label ui">UI</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerUI" target="_blank" rel="noopener">SpineScannerUI</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
           <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">Client</span>
+            <span class="repo-dot client"></span>
+            <span class="repo-label client">上位机</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerApp" target="_blank" rel="noopener">SpineScannerApp</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
           <div class="repo">
-            <span class="repo-dot fw"></span>
-            <span class="repo-label fw">Docs</span>
+            <span class="repo-dot docs"></span>
+            <span class="repo-label docs">文档</span>
             <span class="repo-name"><a href="https://github.com/darwinstudio/SpineScannerDocs" target="_blank" rel="noopener">SpineScannerDocs</a></span>
             <span class="ext"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
           </div>
@@ -648,11 +677,23 @@
     <div class="legend">
       <div class="legend-item">
         <span class="ldot hw"></span>
-        <span>电路 / 硬件</span>
+        <span>电路</span>
       </div>
       <div class="legend-item">
         <span class="ldot fw"></span>
-        <span>程序 / 固件</span>
+        <span>固件</span>
+      </div>
+      <div class="legend-item">
+        <span class="ldot ui"></span>
+        <span>UI</span>
+      </div>
+      <div class="legend-item">
+        <span class="ldot client"></span>
+        <span>上位机</span>
+      </div>
+      <div class="legend-item">
+        <span class="ldot docs"></span>
+        <span>文档</span>
       </div>
     </div>
 

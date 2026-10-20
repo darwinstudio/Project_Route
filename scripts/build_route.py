@@ -22,7 +22,14 @@ DATA_FILE = ROOT / "routes.json"
 README_FILE = ROOT / "README.md"
 HTML_FILE = ROOT / "index.html"
 
-KIND_CN = {"hw": "电路", "fw": "程序"}
+# kind → 显示名。新增类型时还要同步 index.html 里的颜色变量与 legend。
+KIND_CN = {
+    "hw": "电路",      # 电路板设计
+    "fw": "固件",      # 烧录到单片机的程序
+    "ui": "UI",        # 串口屏工程等界面工程
+    "client": "上位机",  # PC / 手机端软件
+    "docs": "文档",
+}
 
 EXT_ICON = (
     '<span class="ext"><svg viewBox="0 0 24 24">'
@@ -59,7 +66,8 @@ def load_projects() -> tuple[str, list[dict]]:
         for item in items:
             kind = item.get("kind")
             if kind not in KIND_CN:
-                sys.exit(f"routes.json: 「{name}」中 kind={kind!r} 非法, 只能是 hw 或 fw")
+                allowed = " / ".join(KIND_CN)
+                sys.exit(f"routes.json: 「{name}」中 kind={kind!r} 非法, 只能是 {allowed}")
             repo = (item.get("repo") or "").strip()
             if not repo:
                 sys.exit(f"routes.json: 「{name}」中有一条 repo 为空")
@@ -175,7 +183,8 @@ def write_text(path: Path, text: str, newline: str) -> None:
 
 def build() -> list[tuple[Path, str]]:
     org, projects = load_projects()
-    stat = f"{len(projects)} projects indexed"
+    total = sum(len(p["items"]) for p in projects)
+    stat = f"{len(projects)} projects · {total} repos indexed"
 
     readme, readme_nl = read_text(README_FILE)
     readme = splice_block(readme, "routes", "\n" + render_readme(org, projects) + "\n")

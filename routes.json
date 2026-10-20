@@ -179,18 +179,15 @@
           "repo": "SpineScanner"
         },
         {
-          "kind": "fw",
-          "role": "UI",
+          "kind": "ui",
           "repo": "SpineScannerUI"
         },
         {
-          "kind": "fw",
-          "role": "Client",
+          "kind": "client",
           "repo": "SpineScannerApp"
         },
         {
-          "kind": "fw",
-          "role": "Docs",
+          "kind": "docs",
           "repo": "SpineScannerDocs"
         }
       ]
